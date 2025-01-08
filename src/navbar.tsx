@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Nav } from "../jss"
+import { Nav } from "./jss"
 
 const NavBar = () => {
   return (
