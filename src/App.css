@@ -7,7 +7,7 @@
 
 .logo {
   height: 6em;
-  padding: 1.5em;
+  padding: 0.5em;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -20,7 +20,8 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
+/* src/Links.css */
+@keyframes rotate {
   from {
     transform: rotate(0deg);
   }
@@ -30,10 +31,10 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.logo.react {
+  animation: rotate 10s linear infinite;
+  width: 20px;
+  height: 20px;
 }
 
 .card {

@@ -221,6 +221,98 @@
         {
             "title": "Princípios SOLID",
             "link": "https://www.linkedin.com/posts/luan-ramalholsr_princ%C3%ADpios-solid-activity-7273178542878711809-nyPP"
+        },
+        {
+            "title": "A collection of modern, server-safe React hooks",
+            "link": "https://usehooks.com/"
+        },
+        {
+            "title": "Hedra IA",
+            "link": "https://www.hedra.com/"
+        },
+        {
+            "title": "Help designers/developers building beautiful products more flexible and working with happiness",
+            "link": "https://ant.design/"
+        },
+        {
+            "title": "Beautifully designed components that you can copy and paste into your apps.",
+            "link": "https://ui.shadcn.com/"
+        },
+        {
+            "title": "Cloud free-certifications",
+            "link": "https://github.com/cloudcommunity/Free-Certifications"
+        },
+        {
+            "title": "A complete computer science study plan to become a software enginee",
+            "link": "https://github.com/jwasham/coding-interview-university"
+        },
+        {
+            "title": "Awesome-Software-architecture",
+            "link": "https://github.com/mehdihadeli/awesome-software-architecture"
+        },
+        {
+            "title": "Awesome-Linux-Software",
+            "link": "https://github.com/luong-komorebi/Awesome-Linux-Software"
+        },
+        {
+            "title": "Awesome-Machine-Learning",
+            "link": "https://github.com/josephmisiti/awesome-machine-learning"
+        },
+        {
+            "title": "All-Awesome",
+            "link": "https://github.com/sindresorhus/awesome"
+        },
+        {
+            "title": "Try RabbitMQ",
+            "link": "https://tryrabbitmq.com/"
+        },
+        {
+            "title": "DiffSynth Studio é um mecanismo de difusão",
+            "link": "https://github.com/modelscope/DiffSynth-Studio"
+        },
+        {
+            "title": "120+ interactive Python coding interview challenges",
+            "link": "https://github.com/donnemartin/interactive-coding-challenges"
+        },
+        {
+            "title": "Learn how to design large-scale systems. Prep for the system design interview.",
+            "link": "https://github.com/donnemartin/system-design-primer"
+        },
+        {
+            "title": "Penpot is the web-based open-source design tool that bridges the gap between designers and developers.",
+            "link": "https://penpot.app/"
+        },
+        {
+            "title": "Free and open source, simple, and intuitive database design editor, data-modeler, and SQL generator.",
+            "link": "https://www.drawdb.app/"
+        },
+        {
+            "title": "A composable charting library built on React components",
+            "link": "https://recharts.org/en-US"
+        },
+        {
+            "title": "A modern animation library for JavaScript and React",
+            "link": "https://motion.dev/"
+        },
+        {
+            "title": "Manim",
+            "link": "https://github.com/ManimCommunity/manim"
+        },
+        {
+            "title": "Visualize Your Ideas With Code",
+            "link": "https://github.com/motion-canvas/motion-canvas"
+        },
+        {
+            "title": "Create beautiful presentations with Svelte",
+            "link": "https://github.com/animotionjs/animotion"
+        },
+        {
+            "title": "Make videos programmatically with React",
+            "link": "https://github.com/remotion-dev/remotion"
+        },
+        {
+            "title": "Dev Encyclopedia",
+            "link": "https://devpedia.dev/"
         }
     ]
 }

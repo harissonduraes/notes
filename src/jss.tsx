@@ -18,9 +18,10 @@ export const Div = styled.div((
 ) => {
     return {
         display: 'flex',
-        // justifyContent: 'flex-start',
-        alignItems: 'revert',
-        padding: '20px 10px',
+        // justifyContent: '',
+        alignItems: 'center',
+        // alignItems: 'revert',
+        // padding: '20px 10px',
         // width: 100
     }
 })

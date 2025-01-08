@@ -1,11 +1,11 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Games from './links/games'
-import NavBar from './navbar'
 import Noticias from './links/noticias'
 import Saude from './links/saude'
 import Ti from './links/ti'
 import data from './data.json'
+import NavBar from './components/navbar'
 
 function App() {
   const noticias = data.noticias;
