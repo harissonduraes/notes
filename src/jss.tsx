@@ -16,3 +16,8 @@ export const Div = styled.div((
         alignItems: 'center'
     }
 })
+
+export const List = styled.ul`
+  list-style-type: none;
+  padding: 0;
+`;
