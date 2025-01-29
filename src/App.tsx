@@ -9,7 +9,7 @@ import Links from './components/Links';
 function App() {
   const [navs, setNavs] = useState<Navs[]>([])
   const [navId, setNavId] = useState<number>()
-  // const [grupo, setGrupo] = useState<number>()
+  const [grupo, setGrupo] = useState<string>()
   const [dataAll, setDataAll] = useState<Data[]>([]);
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
@@ -29,8 +29,6 @@ function App() {
     }
   };
 
-  console.log("navId", navId)
-
   const fetchNavs = async () => {
     const { data, error } = await supabase.from('nav').select();
     if (error)
@@ -39,7 +37,6 @@ function App() {
       // console.log(data)
       setNavs(data)
     }
-
   }
 
   const handleNavClick = async (id: number) => {
@@ -54,7 +51,8 @@ function App() {
     }
   };
 
-  const addLink = async () => {
+  const addLink = async (e: React.FormEvent) => {
+    e.preventDefault();
     const newLink = {
       title: title,
       link: link,
@@ -71,6 +69,20 @@ function App() {
       // setGrupo(undefined)
     }
   };
+
+  const addGrupo = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const newGrupo = {
+      name: grupo
+    };
+    const { error } = await supabase.from("nav").insert([newGrupo]);
+    if (error) {
+      console.log("Error: ", error)
+    } else {
+      // setGrupo(grupo)
+      window.location.reload()
+    }
+  }
 
   const deleteLink = async (id: number) => {
     const { error } = await supabase.from("links").delete().eq("id", id);
@@ -90,27 +102,36 @@ function App() {
   return (
     <>
       <NavBar navs={navs} onNavClick={handleNavClick} />
-      <input
-        type="text"
-        placeholder='Title'
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder='Link'
-        value={link}
-        onChange={(e) => setLink(e.target.value)}
-      />
-      <select value={navId || ""} onChange={handleNavChange}>
-        <option value="" disabled>Grupo</option>
-        {navs && navs.map((nav) => (
-          <option key={nav.id} value={nav.id}>
-            {nav.name}
-          </option>
-        ))}
-      </select>
-      <button onClick={addLink}>Criar</button>
+      <form id='grupoForm' onSubmit={addGrupo}>
+        <input type="text" placeholder='Grupo' value={grupo} onChange={(e) => setGrupo(e.target.value)} />
+
+        <button>Criar grupo</button>
+      </form>
+
+      <form id='linkForm' onSubmit={addLink}>
+        <input
+          type="text"
+          placeholder='Title'
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder='Link'
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
+        />
+        <select value={navId || ""} onChange={handleNavChange}>
+          <option value="" disabled>Grupo</option>
+          {navs && navs.map((nav) => (
+            <option key={nav.id} value={nav.id}>
+              {nav.name}
+            </option>
+          ))}
+        </select>
+        <button >Criar</button>
+
+      </form>
 
       {dataAll && dataAll.map((data) => (
         <div key={data.id}>
