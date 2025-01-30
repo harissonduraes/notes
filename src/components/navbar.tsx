@@ -14,7 +14,7 @@ const NavBar: React.FC<NavBarProps> = ({ navs, onNavClick }) => {
       {navs && navs.map((nav) => (
         <Div key={nav.id} onClick={() => onNavClick(nav.id)}>
           <img src={starLogo} className="logo react" />
-          <Link to={"/" + nav.name}>{nav.name}</Link>
+          <Link to={"/"}>{nav.name}</Link>
         </Div>
       ))}
 
