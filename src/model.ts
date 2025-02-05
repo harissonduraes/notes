@@ -3,10 +3,9 @@ export interface Data {
     created_at: string;
     title: string;
     link: string;
-    // nav: number;
 }
 
 export interface Navs {
-    id: number;
-    name: string;
+    value: string;
+    label: string;
 }
