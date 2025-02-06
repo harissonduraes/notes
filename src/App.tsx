@@ -2,13 +2,12 @@ import NavBar from './components/navbar';
 import supabase from '../utils/supabase';
 import { useEffect, useRef, useState } from 'react';
 import { Data, Navs } from './model';
-import Links from './components/Links';
-import { Button, ClientOnly, createListCollection, HStack, IconButton, Input, Skeleton, Stack, Table } from '@chakra-ui/react';
-import { Field } from './components/ui/field';
-import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValueText, SelectItemText } from './components/ui/select';
+import { createListCollection, Flex, IconButton } from '@chakra-ui/react';
 import { useColorMode } from "./components/ui/color-mode";
 import { LuMoon, LuSun } from 'react-icons/lu';
-import { DialogActionTrigger, DialogBackdrop, DialogBody, DialogCloseTrigger, DialogContent, DialogFooter, DialogHeader, DialogRoot, DialogTitle, DialogTrigger } from './components/ui/dialog';
+import AddLinkModal from './addLinkModal';
+import AddGrupoModal from './addGrupoModal';
+import DataList from './DataList';
 
 function App() {
   const [navs, setNavs] = useState<Navs[]>([])
@@ -115,137 +114,14 @@ function App() {
 
   return (
     <>
-      <HStack gap='14'>
+      <Flex gap='14'>
         <NavBar navs={navs} onNavClick={handleNavClick} />
+        <AddLinkModal contentRef={contentRef} addLink={() => addLink} title={title} link={link} value={value} navsAllCollection={navsAllCollection} setTitle={setTitle} setLink={setLink} setValue={setValue} />
+        <AddGrupoModal addGrupo={() => addGrupo} grupo={grupo} setGrupo={setGrupo} />
+        <IconButton onClick={toggleColorMode} variant="outline" size="sm"> {colorMode === "light" ? <LuSun /> : <LuMoon />} </IconButton>
+      </Flex >
 
-
-        <HStack>
-          <DialogRoot trapFocus={false}>
-            <DialogBackdrop />
-            <DialogTrigger asChild>
-              <Button variant='outline'>Novo link</Button>
-            </DialogTrigger>
-            <DialogContent ref={contentRef}>
-              <DialogCloseTrigger />
-              <form id='linkForm' onSubmit={addLink}>
-                <DialogHeader>
-                  <DialogTitle>Adicionar link</DialogTitle>
-                </DialogHeader>
-                <DialogBody>
-                  <Stack>
-                    <Field label="Title">
-                      <Input variant='subtle' type="text" placeholder='Digite o title' value={title} onChange={(e) => setTitle(e.target.value)} />
-                    </Field>
-                    <Field label="Link">
-                      <Input variant='subtle' type="text" placeholder='Digite o link' value={link} onChange={(e) => setLink(e.target.value)} />
-                    </Field>
-                    <Field label="Grupo">
-                      <SelectRoot form='linkForm' collection={navsAllCollection} value={value} key='subtle' variant='subtle' onValueChange={(e) => setValue(e.value)}		>
-                        <SelectTrigger >
-                          <SelectValueText placeholder='Select grupo' />
-                        </SelectTrigger>
-                        <SelectContent portalRef={contentRef}>
-                          {navsAllCollection.items.map((nav, index) => (
-                            <SelectItem key={index} item={nav}>
-                              <SelectItemText>
-                                {nav.label}
-                              </SelectItemText>
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </SelectRoot>
-                    </Field>
-                  </Stack>
-                </DialogBody>
-                <DialogFooter>
-                  <DialogActionTrigger asChild>
-                    <Button variant='outline'>Cancel</Button>
-                  </DialogActionTrigger>
-                  <Button type='submit'>Save</Button>
-                </DialogFooter>
-              </form>
-            </DialogContent>
-          </DialogRoot>
-        </HStack>
-        <Stack>
-          <DialogRoot>
-            <DialogTrigger asChild>
-              <Button>Novo grupo</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <form id='grupoForm' onSubmit={addGrupo}>
-                <DialogHeader>
-                  <DialogTitle>Adicionar grupo</DialogTitle>
-                </DialogHeader>
-                <DialogBody>
-                  <Stack>
-                    <Field label="Nome">
-                      <Input variant='subtle' type="text" placeholder='Digite o nome' value={grupo} onChange={(e) => setGrupo(e.target.value)} />
-                    </Field>
-                  </Stack>
-                </DialogBody>
-                <DialogFooter>
-                  <DialogActionTrigger asChild>
-                    <Button variant='outline'>Cancel</Button>
-                  </DialogActionTrigger>
-                  <Button type='submit'>Save</Button>
-                </DialogFooter>
-              </form>
-            </DialogContent>
-          </DialogRoot>
-        </Stack>
-        <ClientOnly fallback={<Skeleton boxSize="8" />}>
-          <IconButton onClick={toggleColorMode} variant="outline" size="sm">
-            {colorMode === "light" ? <LuSun /> : <LuMoon />}
-          </IconButton>
-        </ClientOnly>
-      </HStack >
-
-
-
-      <Table.Root size='md' interactive>
-        <Table.Header>
-          <Table.Row>
-            <Table.ColumnHeader>Link</Table.ColumnHeader>
-            <Table.ColumnHeader>Action</Table.ColumnHeader>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {dataAll && dataAll.map((data) => (
-            <Table.Row key={data.id}>
-              <Table.Cell>
-                <Links title={data.title} link={data.link} deleteLink={deleteLink} id={data.id} created_at={data.created_at} />
-              </Table.Cell>
-              <Table.Cell>
-                <DialogRoot role='alertdialog'>
-                  <DialogTrigger asChild>
-                    <Button>
-                      Delete
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Excluir link</DialogTitle>
-                    </DialogHeader>
-                    <DialogBody>
-                      <p>
-                        Deseja realmente excluir?
-                      </p>
-                    </DialogBody>
-                    <DialogFooter>
-                      <DialogActionTrigger asChild>
-                        <Button variant="outline">Cancelar</Button>
-                      </DialogActionTrigger>
-                      <Button colorPalette='red' onClick={() => deleteLink(data.id)}>Excluir</Button>
-                    </DialogFooter>
-                    <DialogCloseTrigger />
-                  </DialogContent>
-                </DialogRoot>
-              </Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table.Root>
+      <DataList dataAll={dataAll} deleteLink={deleteLink} />
     </>
   );
 }
