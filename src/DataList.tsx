@@ -3,8 +3,19 @@ import { Button, Table } from '@chakra-ui/react';
 import { DialogActionTrigger, DialogBody, DialogCloseTrigger, DialogContent, DialogFooter, DialogHeader, DialogRoot, DialogTitle, DialogTrigger } from './components/ui/dialog';
 import Links from './components/Links';
 import { DataListProps } from './props';
+import supabase from '../utils/supabase';
 
-const DataList: React.FC<DataListProps> = ({ dataAll, deleteLink }) => {
+const DataList: React.FC<DataListProps> = ({ dataAll }) => {
+
+    const deleteLink = async (id: number) => {
+        const { error } = await supabase.from("links").delete().eq("id", id);
+        if (error)
+            console.log("Error: ", error)
+        else {
+            window.location.reload()
+        }
+    }
+
     return (
         <List>
             <Table.Root size='md' interactive>
