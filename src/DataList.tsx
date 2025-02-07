@@ -1,12 +1,18 @@
-import React from 'react';
-import { Div, List } from './jss';
-import { Data } from "./model";
+import { List } from './jss';
+import { DataListProps } from './props';
+import supabase from '../utils/supabase';
 
-interface DataListProps {
-    data: Data[];
-}
+const DataList: React.FC<DataListProps> = ({ dataAll }) => {
 
-const DataList: React.FC<DataListProps> = ({ data }) => {
+    const deleteLink = async (id: number) => {
+        const { error } = await supabase.from("links").delete().eq("id", id);
+        if (error)
+            console.log("Error: ", error)
+        else {
+            window.location.reload()
+        }
+    }
+
     return (
         <List>
             {data && data.map((item) => (
