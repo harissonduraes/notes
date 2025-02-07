@@ -5,7 +5,9 @@ import { Data, Navs } from './model';
 import { Flex, IconButton } from '@chakra-ui/react';
 import { useColorMode } from "./components/ui/color-mode";
 import { LuMoon, LuSun } from 'react-icons/lu';
-import { DialogActionTrigger, DialogBackdrop, DialogBody, DialogCloseTrigger, DialogContent, DialogFooter, DialogHeader, DialogRoot, DialogTitle, DialogTrigger } from './components/ui/dialog';
+import AddLinkModal from './addLinkModal';
+import AddGrupoModal from './addGrupoModal';
+import DataList from './DataList';
 
 const App: React.FC = () => {
   const [navs, setNavs] = useState<Navs[]>([])
@@ -46,7 +48,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <HStack gap='14'>
+      <Flex gap='14'>
         <NavBar navs={navs} onNavClick={handleNavClick} />
         <AddLinkModal navs={navs} />
         <AddGrupoModal navs={navs} />
