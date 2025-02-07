@@ -1,11 +1,11 @@
-import { DialogActionTrigger, DialogBackdrop, DialogBody, DialogCloseTrigger, DialogContent, DialogFooter, DialogHeader, DialogRoot, DialogTitle, DialogTrigger } from './components/ui/dialog';
-import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValueText, SelectItemText } from './components/ui/select';
+import { DialogActionTrigger, DialogBackdrop, DialogBody, DialogCloseTrigger, DialogContent, DialogFooter, DialogHeader, DialogRoot, DialogTitle, DialogTrigger } from './ui/dialog';
+import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValueText, SelectItemText } from './ui/select';
 import { Button, createListCollection, Input, Stack } from '@chakra-ui/react';
-import { Field } from './components/ui/field';
+import { Field } from './ui/field';
 import React, { useRef, useState } from 'react';
-import { AddLinkModalProps } from './props';
-import supabase from '../utils/supabase';
-import { Navs } from './model';
+import { AddLinkModalProps } from '../props';
+import supabase from '../../utils/supabase';
+import { Navs } from '../model';
 
 const AddLinkModal: React.FC<AddLinkModalProps> = ({ navs }) => {
     const [title, setTitle] = useState("");

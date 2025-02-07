@@ -1,9 +1,9 @@
-import { List } from './jss';
+import { List } from '../jss';
 import { Button, Table } from '@chakra-ui/react';
-import { DialogActionTrigger, DialogBody, DialogCloseTrigger, DialogContent, DialogFooter, DialogHeader, DialogRoot, DialogTitle, DialogTrigger } from './components/ui/dialog';
-import Links from './components/Links';
-import { DataListProps } from './props';
-import supabase from '../utils/supabase';
+import { DialogActionTrigger, DialogBody, DialogCloseTrigger, DialogContent, DialogFooter, DialogHeader, DialogRoot, DialogTitle, DialogTrigger } from './ui/dialog';
+import Links from './Links';
+import { DataListProps } from '../props';
+import supabase from '../../utils/supabase';
 
 const DataList: React.FC<DataListProps> = ({ dataAll }) => {
 

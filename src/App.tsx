@@ -5,9 +5,9 @@ import { Data, Navs } from './model';
 import { Flex, IconButton } from '@chakra-ui/react';
 import { useColorMode } from "./components/ui/color-mode";
 import { LuMoon, LuSun } from 'react-icons/lu';
-import AddLinkModal from './addLinkModal';
-import AddGrupoModal from './addGrupoModal';
-import DataList from './DataList';
+import AddLinkModal from './components/addLinkModal';
+import AddGrupoModal from './components/addGrupoModal';
+import DataList from './components/DataList';
 
 const App: React.FC = () => {
   const [navs, setNavs] = useState<Navs[]>([])
@@ -48,11 +48,12 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Flex gap='14'>
+      <Flex gap='5' >
         <NavBar navs={navs} onNavClick={handleNavClick} />
         <AddLinkModal navs={navs} />
         <AddGrupoModal navs={navs} />
         <IconButton onClick={toggleColorMode} variant="outline" size="sm"> {colorMode === "light" ? <LuSun /> : <LuMoon />} </IconButton>
+
       </Flex >
 
       <DataList dataAll={dataAll} />

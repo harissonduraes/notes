@@ -1,10 +1,10 @@
-import { DialogActionTrigger, DialogBody, DialogContent, DialogFooter, DialogHeader, DialogRoot, DialogTitle, DialogTrigger } from './components/ui/dialog';
+import { DialogActionTrigger, DialogBody, DialogContent, DialogFooter, DialogHeader, DialogRoot, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Button, Input, Stack } from '@chakra-ui/react';
-import { Field } from './components/ui/field';
+import { Field } from './ui/field';
 import { useState } from 'react';
-import { Navs } from './model';
-import supabase from '../utils/supabase';
-import { AddGrupoModalProps } from './props';
+import { Navs } from '../model';
+import supabase from '../../utils/supabase';
+import { AddGrupoModalProps } from '../props';
 
 const AddGrupoModal: React.FC<AddGrupoModalProps> = ({ navs }) => {
     const [grupo, setGrupo] = useState<string>()
@@ -26,7 +26,6 @@ const AddGrupoModal: React.FC<AddGrupoModalProps> = ({ navs }) => {
 
         const maxValue = findMaxValue(navs);
         const newValue = parseFloat(maxValue) + 1;
-        console.log("newValue", newValue)
 
         const newGrupo = {
             value: newValue,
