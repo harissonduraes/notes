@@ -31,7 +31,6 @@ const AddLinkModal: React.FC<AddLinkModalProps> = ({ navs }) => {
     const navsAllCollection = createListCollection<Navs>({
         items: navs
     })
-    console.log(navsAllCollection)
 
     return (
         <DialogRoot>

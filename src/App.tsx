@@ -53,9 +53,7 @@ const App: React.FC = () => {
         <AddLinkModal navs={navs} />
         <AddGrupoModal navs={navs} />
         <IconButton onClick={toggleColorMode} variant="outline" size="sm"> {colorMode === "light" ? <LuSun /> : <LuMoon />} </IconButton>
-
       </Flex >
-
       <DataList dataAll={dataAll} />
     </>
   );
