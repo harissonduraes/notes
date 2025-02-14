@@ -2,13 +2,14 @@ import NavBar from './components/navbar';
 import supabase from '../utils/supabase';
 import { useEffect } from 'react';
 import { Data, Navs } from './model';
-import { Flex, IconButton } from '@chakra-ui/react';
+import { Button, Flex, IconButton } from '@chakra-ui/react';
 import { useColorMode } from "./components/ui/color-mode";
 import { LuMoon, LuSun } from 'react-icons/lu';
 import AddLinkModal from './components/addLinkModal';
 import AddGrupoModal from './components/addGrupoModal';
 import DataList from './components/DataList';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const App: React.FC = () => {
   const [authenticated, setAuthenticated] = React.useState(false);
@@ -66,6 +67,7 @@ const App: React.FC = () => {
         <NavBar navs={navs} onNavClick={handleNavClick} />
         <AddLinkModal navs={navs} authenticated={authenticated} />
         <AddGrupoModal navs={navs} authenticated={authenticated} />
+        <Button variant='outline'><Link to={'/login'}>Login</Link></Button>
         <IconButton onClick={toggleColorMode} variant="outline" size="sm"> {colorMode === "light" ? <LuSun /> : <LuMoon />} </IconButton>
       </Flex >
       <DataList dataAll={dataAll} authenticated={authenticated} />
