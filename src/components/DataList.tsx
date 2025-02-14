@@ -5,7 +5,7 @@ import Links from './Links';
 import { DataListProps } from '../props';
 import supabase from '../../utils/supabase';
 
-const DataList: React.FC<DataListProps> = ({ dataAll }) => {
+const DataList: React.FC<DataListProps> = ({ dataAll, authenticated }) => {
 
     const deleteLink = async (id: number) => {
         const { error } = await supabase.from("links").delete().eq("id", id);
@@ -34,7 +34,7 @@ const DataList: React.FC<DataListProps> = ({ dataAll }) => {
                             <Table.Cell>
                                 <DialogRoot role='alertdialog'>
                                     <DialogTrigger asChild>
-                                        <Button variant='outline'>
+                                        <Button disabled={!authenticated} variant='outline'>
                                             Delete
                                         </Button>
                                     </DialogTrigger>

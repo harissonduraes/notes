@@ -1,13 +1,16 @@
 import { Data, Navs } from "./model";
 
 export interface AddGrupoModalProps {
-    navs: Navs[]
+    navs: Navs[];
+    authenticated: boolean;
 }
 
 export interface AddLinkModalProps {
-    navs: Navs[]
+    navs: Navs[];
+    authenticated: boolean;
 }
 
 export interface DataListProps {
-    dataAll: Data[],
+    dataAll: Data[];
+    authenticated: boolean;
 }

@@ -1,6 +1,6 @@
 import NavBar from './components/navbar';
 import supabase from '../utils/supabase';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Data, Navs } from './model';
 import { Flex, IconButton } from '@chakra-ui/react';
 import { useColorMode } from "./components/ui/color-mode";
@@ -8,16 +8,30 @@ import { LuMoon, LuSun } from 'react-icons/lu';
 import AddLinkModal from './components/addLinkModal';
 import AddGrupoModal from './components/addGrupoModal';
 import DataList from './components/DataList';
+import React from 'react';
 
 const App: React.FC = () => {
-  const [navs, setNavs] = useState<Navs[]>([])
-  const [dataAll, setDataAll] = useState<Data[]>([]);
+  const [authenticated, setAuthenticated] = React.useState(false);
+  const [navs, setNavs] = React.useState<Navs[]>([]);
+  const [dataAll, setDataAll] = React.useState<Data[]>([]);
   const { toggleColorMode, colorMode } = useColorMode();
 
   useEffect(() => {
     fetchDataAll();
     fetchNavs();
+    getSession();
   }, []);
+
+  const getSession = async () => {
+    if (authenticated)
+      return;
+
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+
+    setAuthenticated(!!session);
+  }
 
   const fetchDataAll = async () => {
     const { data, error } = await supabase.from('links').select();
@@ -50,11 +64,11 @@ const App: React.FC = () => {
     <>
       <Flex gap='5' >
         <NavBar navs={navs} onNavClick={handleNavClick} />
-        <AddLinkModal navs={navs} />
-        <AddGrupoModal navs={navs} />
+        <AddLinkModal navs={navs} authenticated={authenticated} />
+        <AddGrupoModal navs={navs} authenticated={authenticated} />
         <IconButton onClick={toggleColorMode} variant="outline" size="sm"> {colorMode === "light" ? <LuSun /> : <LuMoon />} </IconButton>
       </Flex >
-      <DataList dataAll={dataAll} />
+      <DataList dataAll={dataAll} authenticated={authenticated} />
     </>
   );
 }

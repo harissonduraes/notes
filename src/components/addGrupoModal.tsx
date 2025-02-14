@@ -6,7 +6,7 @@ import { Navs } from '../model';
 import supabase from '../../utils/supabase';
 import { AddGrupoModalProps } from '../props';
 
-const AddGrupoModal: React.FC<AddGrupoModalProps> = ({ navs }) => {
+const AddGrupoModal: React.FC<AddGrupoModalProps> = ({ navs, authenticated }) => {
     const [grupo, setGrupo] = useState<string>()
     const addGrupo = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -43,7 +43,7 @@ const AddGrupoModal: React.FC<AddGrupoModalProps> = ({ navs }) => {
     return (
         <DialogRoot>
             <DialogTrigger asChild>
-                <Button variant='outline'>Novo grupo</Button>
+                <Button disabled={!authenticated} variant='outline'>Novo grupo</Button>
             </DialogTrigger>
             <DialogContent>
                 <form id='grupoForm' onSubmit={addGrupo}>

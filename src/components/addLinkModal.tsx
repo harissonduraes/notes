@@ -7,7 +7,7 @@ import { AddLinkModalProps } from '../props';
 import supabase from '../../utils/supabase';
 import { Navs } from '../model';
 
-const AddLinkModal: React.FC<AddLinkModalProps> = ({ navs }) => {
+const AddLinkModal: React.FC<AddLinkModalProps> = ({ navs, authenticated }) => {
     const [title, setTitle] = useState("");
     const [link, setLink] = useState("");
     const [value, setValue] = useState<string[]>([])
@@ -36,7 +36,7 @@ const AddLinkModal: React.FC<AddLinkModalProps> = ({ navs }) => {
         <DialogRoot>
             <DialogBackdrop />
             <DialogTrigger asChild>
-                <Button variant='outline'>Novo link</Button>
+                <Button disabled={!authenticated} variant='outline'>Novo link</Button>
             </DialogTrigger>
             <DialogContent ref={contentRef}>
                 <DialogCloseTrigger />
