@@ -2,7 +2,7 @@ import NavBar from './components/navbar';
 import supabase from '../utils/supabase';
 import { useEffect } from 'react';
 import { Data, Navs } from './model';
-import { Button, Flex, IconButton } from '@chakra-ui/react';
+import { Button, IconButton, Stack } from '@chakra-ui/react';
 import { useColorMode } from "./components/ui/color-mode";
 import { LuMoon, LuSun } from 'react-icons/lu';
 import AddLinkModal from './components/addLinkModal';
@@ -63,13 +63,13 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Flex gap='5' >
+      <Stack flexDirection='row' gap='5' >
         <NavBar navs={navs} onNavClick={handleNavClick} />
         <AddLinkModal navs={navs} authenticated={authenticated} />
         <AddGrupoModal navs={navs} authenticated={authenticated} />
         <Button variant='outline'><Link to={'/login'}>Login</Link></Button>
         <IconButton onClick={toggleColorMode} variant="outline" size="sm"> {colorMode === "light" ? <LuSun /> : <LuMoon />} </IconButton>
-      </Flex >
+      </Stack >
       <DataList dataAll={dataAll} authenticated={authenticated} />
     </>
   );
